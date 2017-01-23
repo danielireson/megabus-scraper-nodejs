@@ -8,6 +8,7 @@ module.exports = function(originLocation, destinationLocation, startDate, endDat
   checkValidLocation(destinationLocation)
   checkValidDate(startDate)
   checkValidDate(endDate)
+  checkDatesWithinOneMonth(startDate, endDate)
 }
 
 function checkRequiredParams(originLocation, destinationLocation, startDate, endDate) {
@@ -37,5 +38,11 @@ function checkValidLocation(location) {
 function checkValidDate(date) {
   if (!moment(date, 'DD-MM-YYYY').isValid()) {
     throw createError(400, `${date} is not a valid date string, dates should be formatted as 'dd-mm-yyyy'`)
+  }
+}
+
+function checkDatesWithinOneMonth(startDate, endDate) {
+  if (moment(endDate, 'DD-MM-YYYY') > moment(startDate, 'DD-MM-YYYY').add(1, 'months')) {
+    throw createError(400, 'Search dates must be within one month of each other')
   }
 }
