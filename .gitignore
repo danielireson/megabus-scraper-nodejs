@@ -1,0 +1,21 @@
+# osx
+.DS_Store*
+Icon?
+._*
+
+# windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# linux
+.directory
+*~
+
+# npm
+node_modules
+*.log
+*.gz
+
+# user
+project.txt
