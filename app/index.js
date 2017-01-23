@@ -3,6 +3,7 @@ const {send} = require('micro')
 const validator = require('./validator')
 
 module.exports = async function (request, response) {
+  // :originLocation/:desinationLocation/:startDate/:endDate
   const params = url.parse(request.url).pathname.split('/').splice(1)
   validator(...params)
 
