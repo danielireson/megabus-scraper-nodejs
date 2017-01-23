@@ -7,7 +7,7 @@ module.exports = function(request) {
     throw createError(400, 'Please set the X-Authorization header with a valid API key')
   }
 
-  if (key !== 'test') {
+  if (key !== process.env.API_KEY) {
     throw createError(400, 'Invalid API key passed as X-Authorization header')
   }
 }

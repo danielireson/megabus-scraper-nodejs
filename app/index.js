@@ -1,4 +1,5 @@
 const url = require('url')
+const dotenv = require('dotenv').config()
 const {send} = require('micro')
 const authenticator = require('./authenticator')
 const validator = require('./validator')

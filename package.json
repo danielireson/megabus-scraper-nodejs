@@ -12,6 +12,7 @@
   "author": "Daniel Ireson",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "micro": "^6.2.0",
     "moment": "^2.17.1"
   }
