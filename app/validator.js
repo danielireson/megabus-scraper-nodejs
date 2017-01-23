@@ -8,6 +8,7 @@ module.exports = function(originLocation, destinationLocation, startDate, endDat
   checkValidLocation(destinationLocation)
   checkValidDate(startDate)
   checkValidDate(endDate)
+  checkDateIsInFuture(startDate)
   checkOrderOfDates(startDate, endDate)
   checkDatesWithinOneMonth(startDate, endDate)
 }
@@ -39,6 +40,12 @@ function checkValidLocation(location) {
 function checkValidDate(date) {
   if (!moment(date, 'DD-MM-YYYY').isValid()) {
     throw createError(400, `${date} is not a valid date string, dates should be formatted as 'dd-mm-yyyy'`)
+  }
+}
+
+function checkDateIsInFuture(date) {
+  if (moment(date, 'DD-MM-YYYY') < moment()) {
+    throw createError(400, 'Search dates must be in the future')
   }
 }
 
