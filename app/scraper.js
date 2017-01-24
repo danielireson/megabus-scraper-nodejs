@@ -4,6 +4,7 @@ const request = require('request-promise')
 const locations = require('./data/locations.json')
 
 module.exports = function(originLocation, destinationLocation, startDate, endDate) {
+  endDate = endDate || startDate
   let originCode = lookupLocationCode(originLocation)
   let destinationCode = lookupLocationCode(destinationLocation)
   return runScrapers(originCode, destinationCode, startDate, endDate)

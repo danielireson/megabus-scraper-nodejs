@@ -3,6 +3,8 @@ const moment = require('moment')
 const locations = require('./data/locations.json')
 
 module.exports = function(originLocation, destinationLocation, startDate, endDate) {
+  endDate = endDate || startDate
+
   checkRequiredParams(originLocation, destinationLocation, startDate, endDate)
   checkValidLocation(originLocation)
   checkValidLocation(destinationLocation)
@@ -24,10 +26,6 @@ function checkRequiredParams(originLocation, destinationLocation, startDate, end
 
   if (startDate == null) {
     throw createError(400, 'Start date was not provided')
-  }
-
-  if (endDate == null) {
-    throw createError(400, 'End date was not provided')
   }
 }
 
