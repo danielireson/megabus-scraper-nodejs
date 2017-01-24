@@ -12,8 +12,11 @@
   "author": "Daniel Ireson",
   "license": "MIT",
   "dependencies": {
+    "cheerio": "^0.22.0",
     "dotenv": "^4.0.0",
     "micro": "^6.2.0",
-    "moment": "^2.17.1"
+    "moment": "^2.17.1",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
   }
 }

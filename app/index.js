@@ -20,7 +20,7 @@ module.exports = async function (request, response) {
   let json = {
     code: 200,
     message: 'There were X results',
-    data: []
+    data: results
   }
   
   send(response, 200, json)
