@@ -2,7 +2,6 @@
   "name": "megabus-scraper-nodejs",
   "version": "0.0.1",
   "description": "Megabus price scraper API in Node.js",
-  "main": "index.js",
   "scripts": {
     "start": "npm run start:dev",
     "start:dev": "NODE_ENV=development npm run micro",
