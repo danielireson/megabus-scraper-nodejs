@@ -5,6 +5,7 @@ const moment = require('moment')
 const authenticator = require('./authenticator')
 const validator = require('./validator')
 const scraper = require('./scraper')
+const analyser = require('./analyser')
 
 // Request format == /:originLocation/:desinationLocation/:startDate/:endDate
 module.exports = async function (request, response) {
@@ -16,12 +17,14 @@ module.exports = async function (request, response) {
   validator(...params)
 
   let results = await scraper(...params)
+  let analysis = analyser(results)
 
   let json = {
     code: 200,
-    message: 'There were X results',
+    message: `There are ${analysis.noOfJourneys} journeys`,
+    stats: analysis,
     data: results
   }
-  
+
   send(response, 200, json)
 }
