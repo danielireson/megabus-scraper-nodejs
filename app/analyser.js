@@ -2,6 +2,12 @@ module.exports = function(results) {
   let noOfJourneys = 0
   let prices = []
 
+  if (results.length === 0) {
+    return {
+      noOfJourneys: 0    
+    }
+  }
+
   for (let day of results) {
     noOfJourneys += day.length
     for (let journey of day) {
