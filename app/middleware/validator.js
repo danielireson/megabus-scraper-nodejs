@@ -1,6 +1,6 @@
 const {createError} = require('micro')
 const moment = require('moment')
-const locations = require('./data/locations.json')
+const locations = require('../data/locations.json')
 
 module.exports = function(originLocation, destinationLocation, startDate, endDate) {
   endDate = endDate || startDate
