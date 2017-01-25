@@ -15,8 +15,11 @@ async function runScrapers(originCode, destinationCode, startDate, endDate) {
   for (let i = 0; i < getNoOfDays(startDate, endDate); i++) {
     let date = addDays(startDate, i)
     let url = buildUrl(originCode, destinationCode, date)
-    let journeys = await getJourneysFromUrl(url)
-    journeys.length > 0 && results.push(journeys)
+    let scraperResult = {
+      date: date,
+      journeys: await getJourneysFromUrl(url)
+    }
+    scraperResult.journeys.length > 0 && results.push(scraperResult)
   }
   return results
 }

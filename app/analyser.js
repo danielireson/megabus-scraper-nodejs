@@ -9,8 +9,8 @@ module.exports = function(results) {
   }
 
   for (let day of results) {
-    noOfJourneys += day.length
-    for (let journey of day) {
+    noOfJourneys += day.journeys.length
+    for (let journey of day.journeys) {
       prices.push(Number(journey.price))
     }
   }
