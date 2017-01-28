@@ -13,14 +13,15 @@ function checkOptionsRequest(request, response) {
 }
 
 function checkApiKey(request, response) {
-  const key = request.headers['x-authorization']
+  const userKey = request.headers['x-authorization']
+  const apiKey = process.env.API_KEY || 'megabus-scraper-nodejs'
 
-  if (key == null) {
+  if (userKey == null) {
     let error = createError(401, 'Please set the X-Authorization header with a valid API key')
     responder.sendErrorAsJson(response, error)
   }
 
-  if (key !== process.env.API_KEY) {
+  if (userKey !== apiKey) {
     let error = createError(401, 'Invalid API key passed as X-Authorization header')
     responder.sendErrorAsJson(response, error)
   }

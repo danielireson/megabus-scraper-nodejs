@@ -38,7 +38,7 @@ module.exports.sendOptionsResponse = function(response) {
 }
 
 function attachHeaders(response) {
-  response.setHeader('Access-Control-Allow-Origin', '*')
+  response.setHeader('Access-Control-Allow-Origin', process.env.CORS_ORIGIN || '*')
   response.setHeader('Access-Control-Allow-Methods', 'GET')
   response.setHeader('Access-Control-Allow-Headers', 'X-Authorization')
 }
