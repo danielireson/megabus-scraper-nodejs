@@ -1,13 +1,27 @@
 const {createError} = require('micro')
+const responder = require('../http/responder')
 
-module.exports = function(request) {
+module.exports = function(request, response) {
+  checkOptionsRequest(request, response)
+  checkApiKey(request, response)
+}
+
+function checkOptionsRequest(request, response) {
+  if (request.method === 'OPTIONS') {
+    responder.sendOptionsResponse(response)
+  }
+}
+
+function checkApiKey(request, response) {
   const key = request.headers['x-authorization']
 
   if (key == null) {
-    throw createError(401, 'Please set the X-Authorization header with a valid API key')
+    let error = createError(401, 'Please set the X-Authorization header with a valid API key')
+    responder.sendErrorAsJson(response, error)
   }
 
   if (key !== process.env.API_KEY) {
-    throw createError(401, 'Invalid API key passed as X-Authorization header')
+    let error = createError(401, 'Invalid API key passed as X-Authorization header')
+    responder.sendErrorAsJson(response, error)
   }
 }
