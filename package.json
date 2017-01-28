@@ -6,7 +6,7 @@
     "start": "npm run start:dev",
     "start:dev": "NODE_ENV=development npm run micro",
     "start:prod": "NODE_ENV=production npm run micro",
-    "micro": "micro -H localhost app/index.js"
+    "micro": "micro app/index.js"
   },
   "author": "Daniel Ireson",
   "license": "MIT",
