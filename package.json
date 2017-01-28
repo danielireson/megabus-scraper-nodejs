@@ -4,9 +4,9 @@
   "description": "Megabus price scraper API in Node.js",
   "scripts": {
     "start": "npm run start:dev",
-    "start:dev": "NODE_ENV=development npm run micro",
+    "start:dev": "NODE_ENV=development PORT=3000 npm run micro",
     "start:prod": "NODE_ENV=production npm run micro",
-    "micro": "micro -p 5000 app/index.js"
+    "micro": "micro -p $PORT app/index.js"
   },
   "author": "Daniel Ireson",
   "license": "MIT",
