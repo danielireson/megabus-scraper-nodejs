@@ -7,6 +7,9 @@ module.exports = function(response, params) {
   let route = params[0]
   params = params.splice(1)
   switch(route) {
+    case 'locations':
+      locationsHandler(response)
+      break
     case 'search':
       searchHandler(response, params)
       break
@@ -24,6 +27,10 @@ async function searchHandler(response, params) {
 
   let results = await scraper(...params)
   responder.sendResultsAsJson(response, results)
+}
+
+function locationsHandler(response, params) {
+  responder.sendLocationsAsJson(response)  
 }
 
 function noRouteHandler(response, params) {
