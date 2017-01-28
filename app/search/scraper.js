@@ -1,7 +1,7 @@
 const cheerio = require('cheerio')
 const moment = require('moment')
 const request = require('request-promise')
-const locations = require('./data/locations.json')
+const locations = require('../storage/locations.json')
 
 module.exports = function(originLocation, destinationLocation, startDate, endDate) {
   endDate = endDate || startDate
