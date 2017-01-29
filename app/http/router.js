@@ -3,18 +3,22 @@ const validator = require('./validator')
 const scraper = require('../search/scraper')
 const responder = require('./responder')
 
-module.exports = function(response, params) {
-  let route = params[0]
-  params = params.splice(1)
-  switch(route) {
-    case 'locations':
-      locationsHandler(response)
-      break
-    case 'search':
-      searchHandler(response, params)
-      break
-    default:
-      noRouteHandler(response, params)
+module.exports = function(request, response, params) {
+  if (request.method === 'OPTIONS') { 
+    optionsHandler(response)
+  } else {
+    let route = params[0]
+    params = params.splice(1)
+    switch(route) {
+      case 'locations':
+        locationsHandler(response)
+        break
+      case 'search':
+        searchHandler(response, params)
+        break
+      default:
+        noRouteHandler(response, params)
+    }
   }
 }
 
@@ -36,4 +40,8 @@ function locationsHandler(response, params) {
 function noRouteHandler(response, params) {
   let error = createError(404, 'The requested route was not found')
   responder.sendErrorAsJson(response, error)
+}
+
+function optionsHandler(response) {
+  responder.sendOptionsResponse(response)
 }

@@ -9,5 +9,5 @@ module.exports = function (request, response) {
 
   authenticator(request, response)
   const params = url.parse(request.url).pathname.split('/').splice(1)
-  router(response, params)
+  router(request, response, params)
 }
