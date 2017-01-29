@@ -3,7 +3,7 @@ A small Node.js API to scrape megabus prices over a search period and return res
 
 ## Setup
 ### Environment variables
-Authentication and CORS control is provided through environment variables. These can be set via the OS or through a *env* file at the the root of your project. Clients making requests to the API have to pass a valid API key as an *X-Authorization* HTTP header, otherwise a 401 HTTP status code will be returned. If *API_KEY* is not set the key will default to accepting *megabus-scraper-nodejs* as the *X-Authorization* value. You can change the allowed CORS origin domains by setting a *CORS_ORIGIN* key. For more information on CORS see [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS). This defaults to accepting all domain requests. 
+Authentication and CORS control is provided through environment variables. These can be set via the OS or through a *env* file at the the root of your project. Clients making requests to the API have to pass a valid API key as an *X-Authorization* HTTP header, otherwise a 401 HTTP status code will be returned. If *API_KEY* is not set then it will default to accepting *megabus-scraper-nodejs* as the *X-Authorization* value. You can change the allowed CORS origin domains by setting a *CORS_ORIGIN* key. For more information on CORS see [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS). This defaults to accepting all domain requests. 
 ``` text
 API_KEY=
 CORS_ORIGIN=
@@ -94,7 +94,7 @@ Responses are returned in JSON with a HTTP status *code* always present. Search 
                 "price": "11.00"
             }
         ]
-    },
+    }
   ]
 }
 ```
