@@ -1,5 +1,5 @@
+require('dotenv').config()
 const url = require('url')
-const dotenv = require('dotenv').config()
 const moment = require('moment')
 const authenticator = require('./http/authenticator')
 const router = require('./http/router')
