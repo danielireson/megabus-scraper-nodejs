@@ -6,7 +6,8 @@
     "start": "npm run start:dev",
     "start:dev": "NODE_ENV=development PORT=3000 npm run micro",
     "start:prod": "NODE_ENV=production npm run micro",
-    "micro": "micro -p $PORT app/index.js"
+    "micro": "micro -p $PORT app/index.js",
+    "test": "NODE_ENV=test ava test"
   },
   "author": "Daniel Ireson",
   "license": "MIT",
@@ -17,5 +18,10 @@
     "moment": "^2.17.1",
     "request": "^2.79.0",
     "request-promise": "^4.1.1"
+  },
+  "devDependencies": {
+    "async-to-gen": "^1.3.2",
+    "ava": "^0.18.1",
+    "test-listen": "^1.0.1"
   }
 }
