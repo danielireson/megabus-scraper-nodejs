@@ -6,7 +6,7 @@
     "start": "npm run start:dev",
     "start:dev": "NODE_ENV=development PORT=3000 npm run micro",
     "start:prod": "NODE_ENV=production npm run micro",
-    "micro": "micro -p $PORT app/index.js",
+    "micro": "micro -p $PORT app",
     "test": "NODE_ENV=test ava test"
   },
   "author": "Daniel Ireson",
