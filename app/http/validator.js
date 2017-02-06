@@ -37,7 +37,7 @@ function checkValidLocation(location) {
 
 function checkValidDate(date) {
   if (!moment(date, 'DD-MM-YYYY').isValid()) {
-    throw createError(400, `${date} is not a valid date string, dates should be formatted as 'dd-mm-yyyy'`)
+    throw createError(400, `${date} is not a valid date string, dates should be formatted as DD-MM-YYYY`)
   }
 }
 
