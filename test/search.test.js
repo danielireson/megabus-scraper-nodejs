@@ -40,6 +40,22 @@ test('search: no destination location', async t => {
   t.is(result.error.message, 'Destination location was not provided')
 })
 
+test('search: invalid origin location', async t => {
+  let tomorrow = moment().add(1, 'days').format('DD-MM-YYYY')
+  let options = buildRequestOptions(t.context.url, 'search', 'invalid', 'london', tomorrow)
+  let result = await t.throws(request(options))
+  t.is(result.error.code, 400)
+  t.is(result.error.message, 'invalid is not a valid location')
+})
+
+test('search: invalid destination location', async t => {
+  let tomorrow = moment().add(1, 'days').format('DD-MM-YYYY')
+  let options = buildRequestOptions(t.context.url, 'search', 'manchester', 'invalid', tomorrow)
+  let result = await t.throws(request(options))
+  t.is(result.error.code, 400)
+  t.is(result.error.message, 'invalid is not a valid location')
+})
+
 test('search: no search start date', async t => {
   let options = buildRequestOptions(t.context.url, 'search', 'manchester', 'london')
   let result = await t.throws(request(options))
