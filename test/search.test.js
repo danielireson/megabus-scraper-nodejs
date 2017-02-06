@@ -17,8 +17,12 @@ function buildRequestOptions(...routes) {
   }
 }
 
+function launchServerOnUniquePort() {
+  return listen(micro(app))
+}
+
 test.beforeEach(async t => {
-  t.context.url = await listen(micro(app))
+  t.context.url = await launchServerOnUniquePort()
 })
 
 test('search: failure', async t => {
