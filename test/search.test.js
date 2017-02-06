@@ -86,3 +86,25 @@ test('search: date future check', async t => {
   t.is(result.error.code, 400)
   t.is(result.error.message, 'Search dates must be in the future')
 })
+
+test('search: manchester to london for tomorrow', async t => {
+  let tomorrow = moment().add(1, 'days').format('DD-MM-YYYY')
+  let options = buildRequestOptions(t.context.url, 'search', 'manchester', 'london', tomorrow)
+  let result = await request(options)
+  t.is(result.code, 200)
+})
+
+test('search: newcastle to bristol in two weeks', async t => {
+  let date = moment().add(14, 'days').format('DD-MM-YYYY')
+  let options = buildRequestOptions(t.context.url, 'search', 'newcastle', 'bristol', date)
+  let result = await request(options)
+  t.is(result.code, 200)
+})
+
+test('search: york to liverpool sometime within a week', async t => {
+  let randDaysToAdd = Math.floor(Math.random() * 7) + 1
+  let date = moment().add(randDaysToAdd, 'days').format('DD-MM-YYYY')
+  let options = buildRequestOptions(t.context.url, 'search', 'york', 'liverpool', date)
+  let result = await request(options)
+  t.is(result.code, 200)
+})
