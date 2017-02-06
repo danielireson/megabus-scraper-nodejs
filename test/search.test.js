@@ -76,14 +76,14 @@ test('search: invalid search start date', async t => {
   let options = buildRequestOptions(t.context.url, 'search', 'manchester', 'london', 'start-date-invalid')
   let result = await t.throws(request(options))
   t.is(result.error.code, 400)
-  t.is(result.error.message, "start-date-invalid is not a valid date string, dates should be formatted as 'dd-mm-yyyy'")
+  t.is(result.error.message, 'start-date-invalid is not a valid date string, dates should be formatted as DD-MM-YYYY')
 })
 
 test('search: invalid search start date', async t => {
   let options = buildRequestOptions(t.context.url, 'search', 'manchester', 'london', 'end-date-invalid')
   let result = await t.throws(request(options))
   t.is(result.error.code, 400)
-  t.is(result.error.message, "end-date-invalid is not a valid date string, dates should be formatted as 'dd-mm-yyyy'")
+  t.is(result.error.message, 'end-date-invalid is not a valid date string, dates should be formatted as DD-MM-YYYY')
 })
 
 test('search: dates not within one month', async t => {
