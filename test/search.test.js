@@ -4,6 +4,7 @@ const micro = require('micro')
 const test = require('ava')
 const listen = require('test-listen')
 const request = require('request-promise')
+const moment = require('moment')
 const app = require('../app')
 
 function buildRequestOptions(...routes) {
@@ -25,7 +26,23 @@ test.beforeEach(async t => {
   t.context.url = await launchServerOnUniquePort()
 })
 
-test('search: failure', async t => {
+test('search: no origin location', async t => {
   let options = buildRequestOptions(t.context.url, 'search')
-  const body = await request(options) 
+  let result = await t.throws(request(options))
+  t.is(result.error.code, 400)
+  t.is(result.error.message, 'Origin location was not provided')
+})
+
+test('search: no destination location', async t => {
+  let options = buildRequestOptions(t.context.url, 'search', 'manchester')
+  let result = await t.throws(request(options))
+  t.is(result.error.code, 400)
+  t.is(result.error.message, 'Destination location was not provided')
+})
+
+test('search: no search start date', async t => {
+  let options = buildRequestOptions(t.context.url, 'search', 'manchester', 'london')
+  let result = await t.throws(request(options))
+  t.is(result.error.code, 400)
+  t.is(result.error.message, 'Start date was not provided')
 })
