@@ -4,7 +4,7 @@ const scraper = require('../search/scraper')
 const responder = require('./responder')
 
 module.exports = function(request, response, params) {
-  if (request.method === 'OPTIONS') { 
+  if (request.method === 'OPTIONS') {
     optionsHandler(response)
   } else {
     let route = params[0]
@@ -25,12 +25,11 @@ module.exports = function(request, response, params) {
 async function searchHandler(response, params) {
   try {
     validator(...params)
+    let results = await scraper(...params)
+    responder.sendResultsAsJson(response, results)
   } catch (error) {
     responder.sendErrorAsJson(response, error)
   }
-
-  let results = await scraper(...params)
-  responder.sendResultsAsJson(response, results)
 }
 
 function locationsHandler(response, params) {
