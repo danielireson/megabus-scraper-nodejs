@@ -8,7 +8,7 @@ const moment = require('moment')
 const app = require('../app')
 
 function buildRequestOptions(...routes) {
-  let url = routes.reduce((concat, route) => concat += '/' + route)
+  let url = routes.join('/')
   return {
     uri: url,
     headers: {
