@@ -4,8 +4,10 @@ const moment = require('moment')
 const authenticator = require('./http/authenticator')
 const router = require('./http/router')
 
-module.exports = function (request, response) {
-  console.log(moment().format('HH:mm') + ' Received request')
+module.exports = function(request, response) {
+  if (process.env.NODE_ENV !== 'test') {
+    console.log(moment().format('HH:mm') + ' Received request')
+  }
 
   authenticator(request, response)
   const params = url.parse(request.url).pathname.split('/').splice(1)
