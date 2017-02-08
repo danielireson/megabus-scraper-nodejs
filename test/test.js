@@ -26,6 +26,13 @@ test.beforeEach(async t => {
   t.context.url = await launchServerOnUniquePort()
 })
 
+test('locations: get all megabus locations', async t => {
+  let options = buildRequestOptions(t.context.url, 'locations')
+  let result = await request(options)
+  t.is(result.code, 200)
+  t.is(Object.keys(result.data).length, 98)
+})
+
 test('search: no origin location', async t => {
   let options = buildRequestOptions(t.context.url, 'search')
   let result = await t.throws(request(options))
